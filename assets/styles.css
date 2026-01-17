@@ -1,0 +1,238 @@
+ /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #121418;       /* Gris Anthracite très sombre */
+            --bg-panel: #1e222b;      /* Gris panneau industriel */
+            --primary-blue: #2980b9;  /* Bleu Industriel */
+            --accent-orange: #e67e22; /* Orange Sécurité */
+            --accent-green: #2ecc71;  /* Vert Électrique */
+            --text-main: #ecf0f1;
+            --text-dim: #bdc3c7;
+            
+            --font-head: 'Orbitron', sans-serif;
+            --font-sub: 'Rajdhani', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- TYPOGRAPHIE --- */
+        h1, h2, h3 { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 2px; }
+        h2 { 
+            color: var(--primary-blue); 
+            border-left: 5px solid var(--accent-orange);
+            padding-left: 15px;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        .section-title { text-align: center; border-left: none; margin-bottom: 60px; }
+        .section-title span { color: var(--accent-orange); }
+
+        /* --- LAYOUT UTILS --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; }
+        
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0; 
+            width: 100%;
+            background: rgba(18, 20, 24, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-family: var(--font-sub); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent-green); }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1e222b 0%, #121418 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Effet de grille technique en arrière plan */
+        #hero::before {
+            content: '';
+            position: absolute;
+            width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(rgba(41, 128, 185, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(41, 128, 185, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: gridMove 20s linear infinite;
+        }
+        
+        .hero-content { text-align: center; z-index: 1; position: relative; }
+        .hero-title { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 0 20px rgba(41, 128, 185, 0.5); }
+        .hero-subtitle { font-family: var(--font-sub); font-size: 1.8rem; color: var(--accent-green); margin-bottom: 20px; }
+        .hero-tagline { font-style: italic; color: var(--text-dim); margin-bottom: 40px; }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-family: var(--font-sub);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--primary-blue);
+            color: var(--text-main);
+            margin: 0 10px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--primary-blue); z-index: -1; transition: 0.3s;
+        }
+        .btn:hover::before { width: 100%; }
+        .btn-accent { border-color: var(--accent-orange); }
+        .btn-accent::before { background: var(--accent-orange); }
+
+        /* --- ABOUT --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text p { margin-bottom: 20px; color: var(--text-dim); }
+        .tech-box {
+            background: var(--bg-panel);
+            padding: 30px;
+            border: 1px solid #333;
+            position: relative;
+        }
+        .tech-box::after { /* Coin décoratif */
+            content: ''; position: absolute; top: -1px; right: -1px;
+            width: 20px; height: 20px; border-top: 3px solid var(--accent-green); border-right: 3px solid var(--accent-green);
+        }
+
+        /* --- COMPETENCES (CARDS) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .skill-card {
+            background: var(--bg-panel);
+            border-top: 3px solid var(--primary-blue);
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
+        .skill-icon { font-size: 2.5rem; color: var(--accent-green); margin-bottom: 20px; }
+        .skill-card h3 { font-size: 1.2rem; margin-bottom: 15px; font-family: var(--font-sub); }
+        .skill-list li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            display: flex; align-items: center;
+        }
+        .skill-list li::before {
+            content: '>'; color: var(--accent-orange); margin-right: 10px; font-weight: bold;
+        }
+
+        /* --- PROJETS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .project-card {
+            background: #181b21;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        .project-header {
+            background: var(--bg-panel);
+            padding: 15px;
+            border-bottom: 1px solid var(--primary-blue);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .project-status { font-size: 0.8rem; color: var(--accent-green); font-family: var(--font-head); }
+        .project-body { padding: 25px; }
+        .project-techs { margin: 15px 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .tech-tag {
+            background: rgba(41, 128, 185, 0.2);
+            color: var(--primary-blue);
+            padding: 5px 10px; font-size: 0.8rem; font-family: var(--font-sub);
+            border: 1px solid var(--primary-blue);
+        }
+
+        /* --- TIMELINE (PARCOURS) --- */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after {
+            content: ''; position: absolute; width: 4px; background-color: #333;
+            top: 0; bottom: 0; left: 50%; margin-left: -2px;
+        }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-item::after {
+            content: ''; position: absolute; width: 20px; height: 20px;
+            right: -10px; background-color: var(--bg-dark);
+            border: 3px solid var(--accent-orange); top: 15px; z-index: 1; border-radius: 50%;
+        }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+        
+        .content-box {
+            padding: 20px; background: var(--bg-panel); border-left: 3px solid var(--accent-green);
+        }
+        .date { font-family: var(--font-head); color: var(--accent-green); font-size: 0.9rem; margin-bottom: 5px; }
+
+        /* --- CONTACT (PANEL STYLE) --- */
+        .contact-wrapper {
+            background: var(--bg-panel);
+            padding: 40px;
+            border: 2px solid #333;
+            max-width: 800px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 30px;
+        }
+        .control-panel {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        .input-group { display: flex; flex-direction: column; }
+        .input-group label { font-family: var(--font-sub); margin-bottom: 5px; color: var(--primary-blue); text-transform: uppercase; }
+        input, textarea {
+            background: #111; border: 1px solid #444; color: var(--accent-green);
+            padding: 10px; font-family: 'Courier New', monospace;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--accent-orange); }
+        .full-width { grid-column: span 2; }
+        
+        /* --- FOOTER --- */
+        footer {
+            background: #0a0c10; padding: 40px 0; text-align: center; border-top: 3px solid var(--primary-blue);
+        }
+        .socials { margin-bottom: 20px; }
+        .socials a {
+            color: var(--text-main); font-size: 1.5rem; margin: 0 15px;
+        }
+        .socials a:hover { color: var(--accent-orange); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .about-grid, .control-panel { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 21px; }
+            .right { left: 0; }
+            .hero-title { font-size: 2.5rem; }
+        }
