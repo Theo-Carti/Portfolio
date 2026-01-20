@@ -78,7 +78,7 @@ php -S localhost:8000
 
 ```
 Porfolio-theo/
-├── 📄 Portofio.php          # Page principale
+├── 📄 index.php          # Page principale
 ├── 📄 contact.php           # Traitement formulaire
 ├── 📁 assets/
 │   ├── 🎨 styles.css        # Styles CSS principaux
@@ -89,7 +89,6 @@ Porfolio-theo/
 ├── 📁 PHPMailer/            # Librairie email
 │   └── 📁 src/
 ├── 📄 README.md             # Documentation
-└── 📄 SETUP_CONTACT.md      # Guide configuration email
 ```
 
 ## 🎯 Sections du Portfolio
@@ -205,3 +204,4 @@ Ce projet est personnel et à des fins éducatives.
 ---
 
 ⚙️ **GEII • AUTOMATISME • ROBOTIQUE** ⚙️
+
